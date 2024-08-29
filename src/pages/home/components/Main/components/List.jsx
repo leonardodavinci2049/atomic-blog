@@ -1,4 +1,8 @@
-const List = ({ posts }) => {
+import usePosts from "../../../../../context/usePosts";
+
+
+const List = () => {
+  const { posts } = usePosts();
   return (
     <ul>
       {posts.map((post, i) => (

@@ -1,8 +1,13 @@
 
-const Posts = ({ posts }) => {
+import List from "./List"
+
+
+const Posts = () => {
+ 
+
   return (
     <section>
-    <List posts={posts} />
+    <List />
   </section>
   )
 }

@@ -1,4 +1,8 @@
-const SearchPosts = ({ searchQuery, setSearchQuery }) => {
+import usePosts from "../../../../../context/usePosts";
+
+
+const SearchPosts = () => {
+  const { searchQuery, setSearchQuery } = usePosts();
   return (
     <input
       value={searchQuery}
