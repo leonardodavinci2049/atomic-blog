@@ -1,4 +1,4 @@
-import { memo, useEffect, useState } from "react";
+import { memo, useCallback, useEffect, useMemo, useState } from "react";
 
 import Header from "./components/Header/Header";
 import Main from "./components/Main/Main";
@@ -12,6 +12,7 @@ const HomePage = () => {
   const [posts, setPosts] = useState(() =>
     Array.from({ length: 30 }, () => createRandomPost())
   );
+
   const [isFakeDark, setIsFakeDark] = useState(false);
 
   useEffect(
@@ -21,10 +22,17 @@ const HomePage = () => {
     [isFakeDark]
   );
 
-  
+  const handleAddPost = useCallback(function handleAddPost(post) {
+    setPosts((posts) => [post, ...posts]);
+  }, []);
 
-
   
+  const archiveOptions = useMemo(() => {
+    return {
+      show: false,
+      title: `Post archive in addition to ${posts.length} main posts`,
+    };
+  }, [posts.length]);
 
   return (
     <section>
@@ -37,7 +45,11 @@ const HomePage = () => {
       <PostProvider>
         <Header />
         <Main />
-        <Archive show={false} />
+        <Archive
+        archiveOptions={archiveOptions}
+        onAddPost={handleAddPost}
+        setIsFakeDark={setIsFakeDark}
+      />
         <Footer />
       </PostProvider>
     </section>
