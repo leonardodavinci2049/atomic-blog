@@ -1,3 +1,4 @@
+import { memo } from "react";
 import FormAddPost from "./components/FormAddPost";
 import Posts from "./components/Posts";
 
@@ -10,4 +11,4 @@ const Main = () => {
   );
 };
 
-export default Main;
+export default memo(Main);
