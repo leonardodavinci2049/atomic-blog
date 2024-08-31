@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 
 import Header from "./components/Header/Header";
 import Main from "./components/Main/Main";
@@ -6,8 +6,12 @@ import Archive from "./components/Archive";
 
 import Footer from "./components/Footer";
 import { PostProvider } from "../../context/PostContext";
+import createRandomPost from "../../core/utils/functions/createRandomPost";
 
 const HomePage = () => {
+  const [posts, setPosts] = useState(() =>
+    Array.from({ length: 30 }, () => createRandomPost())
+  );
   const [isFakeDark, setIsFakeDark] = useState(false);
 
   useEffect(
@@ -16,6 +20,11 @@ const HomePage = () => {
     },
     [isFakeDark]
   );
+
+  
+
+
+  
 
   return (
     <section>
@@ -28,7 +37,7 @@ const HomePage = () => {
       <PostProvider>
         <Header />
         <Main />
-        <Archive />
+        <Archive show={false} />
         <Footer />
       </PostProvider>
     </section>
